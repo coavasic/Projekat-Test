@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.vasic.projekat">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ItemsActivity"
+            android:label="Items"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".PrefActivity"
+            android:theme="@style/PreferenceTheme" />
+        <activity
+            android:name=".ItemActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".AuctionsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".AuctionActivity" />
+
+        <activity android:name=".NewBidActivity"></activity>
+        <service android:name=".Service.AuctionService"></service>
+
+
+        <receiver android:name=".Service.AuctionReceiver">
+
+            <intent-filter>
+
+                <action android:name="com.vasic.Projekat.AUCTION">
+
+                </action>
+
+            </intent-filter>
+
+        </receiver>
+
+    </application>
+
+</manifest>

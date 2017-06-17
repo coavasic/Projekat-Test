@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="splash_screen_settings"
+        android:title="Podesavanja uvodnog ekrana">
+
+    <CheckBoxPreference
+        android:id="@+id/prikaz_pocetnog_ekrana_cb"
+        android:key="prikaz_pocetnog_ekrana"
+        android:title="Prikaz pocetnog ekrana"
+        android:defaultValue="true"
+        />
+
+    <ListPreference
+
+        android:defaultValue="3000"
+        android:dependency="prikaz_pocetnog_ekrana"
+        android:dialogTitle="Splash screen interval"
+        android:entries="@array/trajanje_uvodnog_ekrana"
+        android:entryValues="@array/trajanje_uvodnog_ekrana_vrednosti"
+        android:key="trajanje_uvodnog_ekrana"
+        android:summary="Trajanje uvodnog ekrana"
+        android:title="Trajanje" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="user_info_pc"
+        android:title="Informacije o korisniku">
+
+
+        <Preference
+            android:title="Ime:"
+            android:summary="Aleksandar"
+            android:selectable="false"
+            />
+
+
+        <Preference
+            android:title="Prezime"
+            android:summary="Vasic"
+            android:selectable="false"/>
+
+        <Preference
+            android:title="Broj indeksa"
+            android:summary="SF40-2015"
+            android:selectable="false" />
+
+
+
+    </PreferenceCategory>
+
+
+
+
+
+</PreferenceScreen>
