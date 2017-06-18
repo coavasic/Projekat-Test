@@ -217,6 +217,8 @@ public class ItemAuctionsFragment extends Fragment {
             Intent intent = new Intent(getActivity(), ItemActivity.class);
             intent.putExtra("item_id",item.getId());
             Intent auctionService = new Intent(getActivity(), AuctionService.class);
+            intent.putExtra("current_user",currentUserId);
+            auctionService.putExtra("current_price", newCurrentPrice);
             getContext().startService(auctionService);
             startActivity(intent);
 

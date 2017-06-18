@@ -23,14 +23,14 @@ public class AuctionReceiver  extends BroadcastReceiver{
     public void onReceive(Context context, Intent intent) {
 
 
-
+        double currentPrice = intent.getDoubleExtra("current_price",100);
 
         NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
 
         mBuilder.setSmallIcon(R.mipmap.ic_attach_money_black_24dp);
         mBuilder.setContentTitle("BRAVOOOOO");
-        mBuilder.setContentText("Vasa ponuda je najveca (Mnogo debilna stvat) ");
+        mBuilder.setContentText("Vasa ponuda je najveca: " + String.valueOf(currentPrice));
 
         mNotificationManager.notify(notificationID, mBuilder.build());
     }

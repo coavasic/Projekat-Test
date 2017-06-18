@@ -12,10 +12,12 @@ public class AuctionTask extends AsyncTask<Void, Void, Void> {
 
 
     private Context context;
+    private double currentPrice;
 
-    public AuctionTask(Context context){
+    public AuctionTask(Context context, double currentPrice){
 
         this.context = context;
+        this.currentPrice = currentPrice;
     }
 
     @Override
@@ -33,6 +35,7 @@ public class AuctionTask extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         Intent intent = new Intent("AuctionIntent");
         intent.setAction("com.vasic.Projekat.AUCTION");
+        intent.putExtra("current_price",currentPrice);
         context.sendBroadcast(intent);
     }
 }

@@ -36,10 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         users = getAllUsers();
 
 
-        for(User user:users){
 
-            Toast.makeText(this, user.getName(), Toast.LENGTH_LONG).show();
-        }
 
 
 

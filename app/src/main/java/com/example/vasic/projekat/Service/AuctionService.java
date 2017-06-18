@@ -14,7 +14,9 @@ public class AuctionService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
 
-        new AuctionTask(getApplicationContext()).execute();
+        double currentPrice = intent.getDoubleExtra("current_price",100);
+
+        new AuctionTask(getApplicationContext(),currentPrice).execute();
 
         stopSelf();
         return START_NOT_STICKY;
