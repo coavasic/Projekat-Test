@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="User"
                 android:textColor="#fff"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.vasic.projekat.Adapters.ViewPagerAdapter;
 import com.example.vasic.projekat.Fragments.BidListFragment;
@@ -21,10 +23,12 @@ import com.example.vasic.projekat.Fragments.ItemAuctionsFragment;
 import com.example.vasic.projekat.Fragments.ItemInfoFragment;
 import com.example.vasic.projekat.Model.Auction;
 import com.example.vasic.projekat.Model.Item;
+import com.example.vasic.projekat.Model.User;
 import com.example.vasic.projekat.Tools.Mokap;
 import com.example.vasic.projekat.dao.AuctionDao;
 import com.example.vasic.projekat.dao.DatabaseHelper;
 import com.example.vasic.projekat.dao.ItemDao;
+import com.example.vasic.projekat.dao.UserDao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,6 +39,11 @@ public class ItemActivity extends AppCompatActivity {
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     public Item item;
+    private TextView usernameTextView;
+    private ImageView userPicture;
+
+    private Long currentUserId;
+    private User currentUser;
 
 
     private DrawerLayout mDrawerLayout;
@@ -81,6 +90,19 @@ public class ItemActivity extends AppCompatActivity {
 
 
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+
+        Intent intent = getIntent();
+        currentUserId = intent.getLongExtra("current_user",-1);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.drawer_pane_items);
+        //navigationView.setNavigationItemSelectedListener(ItemsActivity.this);
+        View header=navigationView.getHeaderView(0);
+        currentUser = findUserById(currentUserId);
+        usernameTextView = (TextView)header.findViewById(R.id.userName);
+        userPicture = (ImageView)header.findViewById(R.id.avatar);
+        usernameTextView.setText(currentUser.getEmail());
+        userPicture.setImageResource(Integer.valueOf(currentUser.getPicture()));
+
 
 
         tabLayout = (TabLayout) findViewById(R.id.item_tab_layout);
@@ -182,5 +204,25 @@ public class ItemActivity extends AppCompatActivity {
 
 
     }
+
+
+    private User findUserById(long id){
+        User user = new User();
+
+        DatabaseHelper dh = new DatabaseHelper(ItemActivity.this);
+
+        try {
+            UserDao userDao = new UserDao(dh.getConnectionSource());
+            user = userDao.queryForId(id);
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
 
 }

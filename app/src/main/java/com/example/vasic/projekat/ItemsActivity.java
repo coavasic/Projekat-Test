@@ -13,16 +13,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.vasic.projekat.Adapters.ListItemsAdapter;
 import com.example.vasic.projekat.Model.Auction;
 import com.example.vasic.projekat.Model.Item;
+import com.example.vasic.projekat.Model.User;
 import com.example.vasic.projekat.Tools.Mokap;
 import com.example.vasic.projekat.dao.AuctionDao;
 import com.example.vasic.projekat.dao.DatabaseHelper;
 import com.example.vasic.projekat.dao.ItemDao;
 import com.example.vasic.projekat.dao.UserDao;
+
+import org.w3c.dom.Text;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,6 +46,11 @@ public class ItemsActivity extends AppCompatActivity {
     private ArrayList<Item> items1 = new ArrayList<Item>();
     private List<Item> items;
     ListView listView;
+    private TextView usernameTextView;
+    private ImageView userPicture;
+
+    private Long currentUserId;
+    private User currentUser;
 
 
 
@@ -51,10 +61,26 @@ public class ItemsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_items);
         ArrayList<Item> listItems = new ArrayList<Item>();
         listView = (ListView) findViewById(R.id.items_list_view);
-
-        ListItemsAdapter adapter = new ListItemsAdapter(ItemsActivity.this,sqlKurac());
+        Intent intent = getIntent();
+       currentUserId = intent.getLongExtra("current_user",-1);
+        ListItemsAdapter adapter = new ListItemsAdapter(ItemsActivity.this,sqlInit());
         listView.setAdapter(adapter);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_items);
+
+
+
+        currentUser = findUserById(currentUserId);
+
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.drawer_pane_items);
+        //navigationView.setNavigationItemSelectedListener(ItemsActivity.this);
+        View header=navigationView.getHeaderView(0);
+
+        usernameTextView = (TextView)header.findViewById(R.id.userName);
+        userPicture = (ImageView)header.findViewById(R.id.avatar);
+        usernameTextView.setText(currentUser.getEmail());
+        userPicture.setImageResource(Integer.valueOf(currentUser.getPicture()));
 
 
 
@@ -111,6 +137,7 @@ public class ItemsActivity extends AppCompatActivity {
                 Intent intent = new Intent(ItemsActivity.this, ItemActivity.class);
                 Item item = (Item) parent.getItemAtPosition(position);
                 intent.putExtra("item_id",item.getId());
+                intent.putExtra("current_user",currentUserId);
                 startActivity(intent);
 
 
@@ -178,6 +205,11 @@ public class ItemsActivity extends AppCompatActivity {
 
                     }
                 }
+            }
+
+            for (User user1: Mokap.users){
+
+                userDao.createIfNotExists(user1);
             }
 
 
@@ -250,7 +282,7 @@ public class ItemsActivity extends AppCompatActivity {
 
 
 
-    public List<Item> sqlKurac(){
+    public List<Item> sqlInit(){
 
         long firstId = 0;
 
@@ -278,6 +310,24 @@ public class ItemsActivity extends AppCompatActivity {
         }
 
         return items;
+    }
+
+    private User findUserById(long id){
+        User user = new User();
+
+        DatabaseHelper dh = new DatabaseHelper(ItemsActivity.this);
+
+        try {
+            UserDao userDao = new UserDao(dh.getConnectionSource());
+            user = userDao.queryForId(id);
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
     }
 
 

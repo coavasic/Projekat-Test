@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by vasic on 5/6/2017.
@@ -24,6 +25,56 @@ public class Mokap {
     public static User user = new User();
     public static ArrayList<Item> items = new ArrayList<Item>();
 
+    public static List<User> users = new ArrayList<>();
+
+
+
+
+
+    public static void initUsers(){
+        User user1 = new User();
+        User user2 = new User();
+        User user3 = new User();
+
+        users.add(user);
+
+
+        user1.setName("Lazar");
+        user1.setEmail("djera@gmail.com");
+        user1.setPassword("password");
+        user1.setPhone("062326386");
+        user1.setPicture(String.valueOf(R.drawable.djera));
+        user1.setAddress("ADresaaaaaaa");
+
+        user2.setName("Milos");
+        user2.setEmail("krbr@gmail.com");
+        user2.setPassword("password");
+        user2.setPhone("062326386");
+        user2.setPicture(String.valueOf(R.drawable.kerber));
+        user2.setAddress("ADresaaaaaaa");
+
+
+        user3.setName("Mihailo");
+        user3.setEmail("misha@gmail.com");
+        user3.setPassword("password");
+        user3.setPhone("062326386");
+        user3.setPicture(String.valueOf(R.drawable.misha));
+        user3.setAddress("ADresaaaaaaa");
+
+
+        users.add(user1);
+        users.add(user2);
+        users.add(user3);
+
+    }
+
+
+
+
+
+
+
+
     public static void initItems(){
 
 
@@ -31,7 +82,7 @@ public class Mokap {
         user.setEmail("vasic@gmail.com");
         user.setPassword("password");
         user.setPhone("062326386");
-        user.setPicture("Slikaaa");
+        user.setPicture(String.valueOf(R.drawable.ja));
         user.setAddress("ADresaaaaaaa");
 
 

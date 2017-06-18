@@ -44,11 +44,13 @@ public class ItemAuctionsFragment extends Fragment {
 
 
 
-    Item item;
-    Auction auction;
-    User user;
-    TextView startPrice, startDate, endDate, currentPrice, userName;
-    FloatingActionButton fab;
+    private Item item;
+    private Auction auction;
+    private User user;
+    private TextView startPrice, startDate, endDate, currentPrice, userName;
+    private FloatingActionButton fab;
+    private User currentUser;
+    private Long currentUserId;
 
 
 
@@ -66,6 +68,8 @@ public class ItemAuctionsFragment extends Fragment {
 
 
         long itemId = getActivity().getIntent().getLongExtra("item_id",-1);
+        currentUserId = getActivity().getIntent().getLongExtra("current_user",-1);
+        currentUser = getUserById(currentUserId);
 
         item = getItemById(itemId);
 
@@ -105,7 +109,7 @@ public class ItemAuctionsFragment extends Fragment {
                  Intent intent = new Intent(getActivity(), NewBidActivity.class);
                 intent.putExtra("auction_id", auction.getId());
                 intent.putExtra("current_price", current);
-                intent.putExtra("user_id",user.getId());
+                intent.putExtra("user_id",currentUserId);
                 startActivityForResult(intent,resoult);
             }
         });

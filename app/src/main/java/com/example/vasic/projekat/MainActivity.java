@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Mokap.initItems();
+        Mokap.initUsers();
 
 
 

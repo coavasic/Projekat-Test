@@ -55,13 +55,13 @@ public class LoginActivity extends AppCompatActivity {
                 user = login(username, password);
                 if(user != null){
                     Intent intent = new Intent(LoginActivity.this,ItemsActivity.class);
-                    intent.putExtra("current_user",user.getId());
-                    startActivity(intent);
+                   intent.putExtra("current_user",user.getId());
+                   startActivity(intent);
 
                 }else{
 
 
-                    Toast.makeText(LoginActivity.this, user.getName(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Pogresan username/password", Toast.LENGTH_LONG).show();
                 }
 
 

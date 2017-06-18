@@ -79,7 +79,7 @@ public class ItemInfoFragment extends Fragment {
             public void onClick(View v) {
 
 
-                //sqlKurac();
+
 
             }
         });
