@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     if(active == true){
-                    Intent dajDrugiEkran = new Intent(MainActivity.this, ItemsActivity.class);
+                    Intent dajDrugiEkran = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(dajDrugiEkran);
                         active= false;
                     finish();}
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
 
-            Intent dajDrugiEkran = new Intent(MainActivity.this, ItemsActivity.class);
+            Intent dajDrugiEkran = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(dajDrugiEkran);
             active = false;
             finish();
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onStartImgClick(View view) {
 
-        Intent toItemsActivity = new Intent(MainActivity.this,ItemsActivity.class);
+        Intent toItemsActivity = new Intent(MainActivity.this,LoginActivity.class);
         startActivity(toItemsActivity);
         active = false;
         finish();

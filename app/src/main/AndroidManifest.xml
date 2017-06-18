@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -32,23 +37,17 @@
             android:name=".AuctionsActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".AuctionActivity" />
+        <activity android:name=".NewBidActivity" />
 
-        <activity android:name=".NewBidActivity"></activity>
-        <service android:name=".Service.AuctionService"></service>
-
+        <service android:name=".Service.AuctionService" />
 
         <receiver android:name=".Service.AuctionReceiver">
-
             <intent-filter>
-
-                <action android:name="com.vasic.Projekat.AUCTION">
-
-                </action>
-
+                <action android:name="com.vasic.Projekat.AUCTION" />
             </intent-filter>
-
         </receiver>
 
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

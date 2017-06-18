@@ -28,8 +28,8 @@ public class Mokap {
 
 
         user.setName("Aleksandaer");
-        user.setEmail("Vaso");
-        user.setPassword("heheheh");
+        user.setEmail("vasic@gmail.com");
+        user.setPassword("password");
         user.setPhone("062326386");
         user.setPicture("Slikaaa");
         user.setAddress("ADresaaaaaaa");

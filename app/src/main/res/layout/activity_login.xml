@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.vasic.projekat.LoginActivity">
+
+
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:text="Vas email: " />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:inputType="textEmailAddress"
+        android:id="@+id/login_username_edit_text"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:text="Vasa lozinka: " />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:inputType="textPassword"
+        android:id="@+id/login_password_edit_text"/>
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="20sp"
+        android:padding="7dp"
+        android:layout_margin="30dp"
+        android:layout_gravity="center"
+        android:id="@+id/login_button"/>
+
+
+
+</LinearLayout>
