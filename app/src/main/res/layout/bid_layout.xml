@@ -24,4 +24,14 @@
         android:id="@+id/single_bid_price_text"/>
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:id="@+id/bid_user_info"
+        android:text="Ovde ide user"/>
+
+
 </LinearLayout>

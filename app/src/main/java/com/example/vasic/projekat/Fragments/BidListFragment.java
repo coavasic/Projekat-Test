@@ -13,6 +13,7 @@ import com.example.vasic.projekat.Model.Auction;
 import com.example.vasic.projekat.Model.Bid;
 import com.example.vasic.projekat.Model.Item;
 import com.example.vasic.projekat.R;
+import com.example.vasic.projekat.dao.BidDao;
 import com.example.vasic.projekat.dao.DatabaseHelper;
 import com.example.vasic.projekat.dao.ItemDao;
 
@@ -48,9 +49,12 @@ public class BidListFragment extends Fragment {
         auction = getActiveAuction(item);
 
         List<Bid> bids= new ArrayList<>(auction.getBids());
+
+
         listView = (ListView) view.findViewById(R.id.bids_list_view);
         ListBidAdapter adapter = new ListBidAdapter(getActivity(),bids);
         listView.setAdapter(adapter);
+
 
 
 
@@ -69,6 +73,22 @@ public class BidListFragment extends Fragment {
         }
 
         return null;
+    }
+
+    public Bid getBidById(long id) {
+
+
+        DatabaseHelper dh = new DatabaseHelper(getActivity());
+        Bid bid = null;
+        try {
+            BidDao bidDao = new BidDao(dh.getConnectionSource());
+            bid = bidDao.queryForId(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bid;
+
     }
 
     public Item getItemById(long itemId){

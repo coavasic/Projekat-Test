@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.vasic.projekat.Model.Auction;
 import com.example.vasic.projekat.Model.Bid;
@@ -50,15 +51,18 @@ public class NewBidActivity extends AppCompatActivity {
                 double price = Double.parseDouble(priceEditText.getText().toString());
                 if(price > currentPrice){
                     bid.setAuction(auction);
+                    Toast.makeText(NewBidActivity.this, user.getName(), Toast.LENGTH_LONG).show();
                     bid.setUser(user);
                     bid.setDataTime(new Date());
                     bid.setPrice(price);
                     //auction.getBids().add(bid);
-                    //user.getBids().add(bid);
+
 
                     try {
                         BidDao bidDao = new BidDao(dh.getConnectionSource());
+                        UserDao userDao = new UserDao(dh.getConnectionSource());
                         bidDao.createIfNotExists(bid);
+                        userDao.createIfNotExists(user);
                         Intent nazad = new Intent();
                         nazad.putExtra("new_current_price",price);
                         setResult(RESULT_OK, nazad);
