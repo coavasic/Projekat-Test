@@ -1,8 +1,6 @@
 # Projekat-Test
 
 
-Video:
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=JNr-e1ZkhB8&t=81s
-" target="_blank"><img src="http://img.youtube.com/vi/JNr-e1ZkhB8&t=81s.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+Video: https://www.youtube.com/watch?v=JNr-e1ZkhB8&t=81s
+Apk: https://drive.google.com/open?id=0B4kfGU1z_PClTWczNWJiZnAtZlU
+ 
