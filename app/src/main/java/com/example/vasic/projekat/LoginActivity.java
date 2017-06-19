@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.login_button);
         initDb = (Button) findViewById(R.id.init_database_button);
 
-        users = getAllUsers();
 
 
 
@@ -49,9 +48,11 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                users = getAllUsers();
 
                 String username = userEditText.getText().toString();
                 String password = passEditText.getText().toString();
+
 
                 user = login(username, password);
                 if(user != null){
@@ -109,6 +110,9 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+
+
+                Toast.makeText(LoginActivity.this, "Inicijalizacija baze podataka uspesna!", Toast.LENGTH_SHORT).show();
 
             }
         });
