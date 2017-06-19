@@ -1,7 +1,11 @@
 package com.example.vasic.projekat;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -16,9 +20,11 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vasic.projekat.Adapters.ListItemsAdapter;
 import com.example.vasic.projekat.Model.Auction;
+import com.example.vasic.projekat.Model.Bid;
 import com.example.vasic.projekat.Model.Item;
 import com.example.vasic.projekat.Model.User;
 import com.example.vasic.projekat.Tools.Mokap;
@@ -31,6 +37,8 @@ import org.w3c.dom.Text;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ItemsActivity extends AppCompatActivity {
@@ -51,6 +59,9 @@ public class ItemsActivity extends AppCompatActivity {
 
     private Long currentUserId;
     private User currentUser;
+
+    private static int notificationID = 1;
+
 
 
 
@@ -81,6 +92,8 @@ public class ItemsActivity extends AppCompatActivity {
         userPicture = (ImageView)header.findViewById(R.id.avatar);
         usernameTextView.setText(currentUser.getEmail());
         userPicture.setImageResource(Integer.valueOf(currentUser.getPicture()));
+
+        checkBids();
 
 
 
@@ -173,6 +186,171 @@ public class ItemsActivity extends AppCompatActivity {
 
 
 
+    public Auction getAuctionById(long itemId){
+        Auction auction = new Auction();
+        DatabaseHelper dh = new DatabaseHelper(ItemsActivity.this);
+
+        try {
+            AuctionDao auctionDao = new AuctionDao(dh.getConnectionSource());
+            auction = auctionDao.queryForId(itemId);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return auction;
+
+    }
+
+
+    public void checkBids(){
+
+        List<Auction> auctions123 = new ArrayList<Auction>();
+        for (Bid bid : currentUser.getBids()){
+
+            Auction auction123 = getAuctionById(bid.getAuction().getId());
+            if(!auctions123.contains(auction123)){
+
+
+                auctions123.add(auction123);
+            }
+
+        }
+
+
+        double sta = 0;
+
+
+        for(Auction auction: auctions123){
+
+            User userNeki = isMax(auction,currentUser);
+           if(userNeki != null)
+               createNotification(userNeki,auction);
+    }
+
+
+
+
+
+    }
+
+
+
+
+
+    public User isMax(Auction auction, User user){
+        List<Double> userPrices = new ArrayList<>();
+        double maxPriceByAuction = getCurrentPrice(auction);
+
+
+        for(Bid bid :user.getBids()){
+            Auction auction1  = getAuctionById(bid.getAuction().getId());
+            if(auction1.getId() == auction.getId()){
+
+                userPrices.add(bid.getPrice());
+               // Toast.makeText(this, String.valueOf(bid.getPrice()), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        double maxPrice = 0;
+
+        if (!userPrices.isEmpty()){
+            maxPrice = Collections.max(userPrices);
+        }
+
+        if(maxPrice == 0){
+
+            return null;
+        }
+        Bid maxBid = findMaxBid(auction,maxPriceByAuction);
+
+        //Toast.makeText(this, String.valueOf(maxPriceByAuction), Toast.LENGTH_SHORT).show();
+
+        if(maxPrice < maxPriceByAuction){
+
+            return findUserById(maxBid.getUser().getId());
+        }else{
+
+            return null;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+    private void createNotification(User user, Auction auction){
+
+
+        NotificationManager mNotificationManager = (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+
+        mBuilder.setSmallIcon(R.mipmap.ic_attach_money_black_24dp);
+        mBuilder.setContentTitle("Vasa ponuda nije najveca");
+        mBuilder.setContentText("Korisnik " + user.getName() +" je ponudio vise od vas na aukciji rb.: "+String.valueOf(auction.getId()));
+        Intent intent = new Intent(this, ItemActivity.class);
+        intent.putExtra("current_user",currentUserId);
+        intent.putExtra("item_id",auction.getItem().getId());
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(contentIntent);
+
+
+        mNotificationManager.notify(notificationID, mBuilder.build());
+
+
+    }
+
+    private Bid findMaxBid(Auction auction, double price){
+
+        for(Bid bid:auction.getBids()){
+            if (bid.getPrice()==price){
+
+                return bid;
+            }
+        }
+
+        return null;
+
+    }
+
+
+    private double getCurrentPrice(Auction auction){
+
+        ArrayList<Double> prices = new ArrayList<Double>();
+
+        if (auction.getBids().isEmpty()){
+
+            return auction.getStartPrice();
+        }
+        else{
+
+            for(Bid bid: auction.getBids()){
+                prices.add(bid.getPrice());
+            }
+
+            return Collections.max(prices);
+        }
+    }
+
+
+
+
+
+
 
 
 
@@ -184,48 +362,11 @@ public class ItemsActivity extends AppCompatActivity {
     }
 
 
-    public void onInitDatabaseClick(MenuItem item) {
-
-        DatabaseHelper dh = new DatabaseHelper(ItemsActivity.this);
-
-        try {
-            ItemDao itemDao = new ItemDao(dh.getConnectionSource());
-            AuctionDao auctionDao = new AuctionDao(dh.getConnectionSource());
-            UserDao userDao = new UserDao(dh.getConnectionSource());
-
-            for(Item item1 : Mokap.items){
-                int resoult = itemDao.create(item1);
-
-                if(resoult == 1){
-                    for(Auction auction : item1.getAutions()){
-
-                        Log.i("Auction Error", auction.getEndDate() + "  " + auction.getStartPrice());
-                        auctionDao.create(auction);
-                        userDao.createIfNotExists(auction.getUser());
-
-                    }
-                }
-            }
-
-            for (User user1: Mokap.users){
-
-                userDao.createIfNotExists(user1);
-            }
 
 
 
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        Intent intent = new Intent(ItemsActivity.this,ItemsActivity.class);
-        startActivity(intent);
-
-
-    }
 
 
     public void OnSettingsClick(MenuItem item) {
@@ -247,36 +388,13 @@ public class ItemsActivity extends AppCompatActivity {
     public void onAllItemsClick(MenuItem item){
 
         Intent allActivity = new Intent(ItemsActivity.this, ItemsActivity.class);
+        allActivity.putExtra("current_user",currentUserId);
         startActivity(allActivity);
         finish();
     }
 
 
-    public void onAllAutctionsClick(MenuItem item){
 
-
-//        items1 = Mokap.items;
-//        for(Item i:items1){
-//            for(Auction a:i.getAutions()){
-//                auctions.add(a);
-//            }
-//        }
-
-
-
-        Intent allAuctions = new Intent(ItemsActivity.this, AuctionsActivity.class);
-        allAuctions.putExtra("auctions",auctions);
-        startActivity(allAuctions);
-
-
-
-
-
-
-
-
-
-    }
 
 
 
@@ -331,6 +449,12 @@ public class ItemsActivity extends AppCompatActivity {
     }
 
 
+    public void onLogoutClick(MenuItem item) {
+
+        Intent intent = new Intent(ItemsActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
 
 
+    }
 }

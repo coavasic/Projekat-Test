@@ -1,61 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
-
-    <ImageView
-        android:id="@+id/auction_item_image_view"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:padding="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_alignTop="@+id/auction_item_name_text_view"
-        android:layout_alignParentStart="true"
-        />
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <TextView
-        android:id="@+id/auction_item_name_text_view"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_toRightOf="@id/auction_item_image_view"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:padding="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="NAZIV ITEMA"
-        android:textSize="17sp"
-        android:textStyle="bold"
-
-        />
-
-
-
-    <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="CENA"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:padding="5dp"
-        android:textAlignment="center"
-        android:id="@+id/auctions_price_list_text_view"
-        android:layout_alignBottom="@+id/auction_item_image_view"
-        android:layout_marginEnd="50dp"
-        android:layout_toEndOf="@+id/auction_item_image_view" />
-
-    <CheckBox
-
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/auctions_price_list_text_view"
-        android:layout_alignEnd="@+id/auction_item_name_text_view"
-        android:id="@+id/checkBox_active" />
+        android:textSize="20sp"
+        android:layout_margin="3dp"
+        android:padding="3dp"
+        android:id="@+id/inactive_auction_start_date"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_margin="3dp"
+        android:padding="3dp"
+        android:id="@+id/inactive_auction_end_date"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_margin="3dp"
+        android:padding="3dp"
+        android:textStyle="bold"
+        android:id="@+id/inactive_auction_start_price"/>
 
 
 
 
-</RelativeLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>

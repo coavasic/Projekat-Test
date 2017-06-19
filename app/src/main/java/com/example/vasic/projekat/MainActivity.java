@@ -17,10 +17,12 @@ import android.widget.Toast;
 
 import com.example.vasic.projekat.Model.Auction;
 import com.example.vasic.projekat.Model.Item;
+import com.example.vasic.projekat.Model.User;
 import com.example.vasic.projekat.Tools.Mokap;
 import com.example.vasic.projekat.dao.AuctionDao;
 import com.example.vasic.projekat.dao.DatabaseHelper;
 import com.example.vasic.projekat.dao.ItemDao;
+import com.example.vasic.projekat.dao.UserDao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         Mokap.initItems();
         Mokap.initUsers();
+
+       // onInitDatabaseClick();
 
 
 
@@ -92,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
 
 
 

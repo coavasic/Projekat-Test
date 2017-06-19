@@ -9,11 +9,61 @@
 
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:text="Trenutna cena:"
+        android:textStyle="bold"
+
+
+
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:text=""
+        android:textStyle="bold"
+        android:id="@+id/new_bid_current_price"
+
+
+
+
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:text="Unos nove ponude"
+        android:textStyle="bold"
+
+
+
+
+
+        />
+
+
+
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:id="@+id/bid_price_edit_text"
         android:hint="Unesi cenu"
+        android:layout_height="60dp"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:layout_margin="5dp"
         android:inputType="number"
         android:textColorHint="@color/colorAccent"/>
 
@@ -21,8 +71,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EVO PONUDE"
+        android:text="ponudi"
         android:id="@+id/new_bid_button"
+        android:layout_gravity="center"
         />
 
 

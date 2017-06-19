@@ -1,6 +1,7 @@
 package com.example.vasic.projekat.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.vasic.projekat.AllAuctionActivity;
 import com.example.vasic.projekat.Model.Auction;
 import com.example.vasic.projekat.Model.Item;
 import com.example.vasic.projekat.R;
@@ -65,12 +67,12 @@ public class ItemInfoFragment extends Fragment {
         getActivity().setTitle(item.getName());
 
 
-        nmbrOfAuction = (TextView) view.findViewById(R.id.number_of_auction);
+       // nmbrOfAuction = (TextView) view.findViewById(R.id.number_of_auction);
 
 
 
-        nameText.setText(item.getName());
-        descText.setText("B");
+        nameText.setText("Naziv: "+ item.getName());
+        descText.setText("Opis:: " + item.getDescription());
       //  nmbrOfAuction.append(String.valueOf(item.getAutions().size()));
         itemImage.setImageResource(item.getPicture());
 
@@ -78,7 +80,9 @@ public class ItemInfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
+                Intent intent = new Intent(getActivity(), AllAuctionActivity.class);
+                intent.putExtra("item_id",item.getId());
+                startActivity(intent);
 
 
             }

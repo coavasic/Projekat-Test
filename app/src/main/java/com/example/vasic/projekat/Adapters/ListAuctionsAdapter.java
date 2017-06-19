@@ -32,6 +32,7 @@ public class ListAuctionsAdapter extends BaseAdapter {
 
     private Context mContext;
     public List<Auction> auctions;
+    private TextView startDateTextView,endDateTextView,startPriceTextView;
 
     public ListAuctionsAdapter(Context context, ArrayList<Auction> auctions){
         this.mContext = context;
@@ -74,19 +75,20 @@ public class ListAuctionsAdapter extends BaseAdapter {
             view = convertView;
         }
 
-        CheckBox cbActive = (CheckBox) view.findViewById(R.id.checkBox_active);
-        ImageView imgView = (ImageView) view.findViewById(R.id.auction_item_image_view);
-        TextView nameText = (TextView) view.findViewById(R.id.auction_item_name_text_view);
-        TextView priceTextView = (TextView) view.findViewById(R.id.auctions_price_list_text_view);
-        imgView.setImageResource(auction.getItem().getPicture());
-        cbActive.setChecked(auction.isActive());
+        startDateTextView = (TextView)view.findViewById(R.id.inactive_auction_start_date);
+        endDateTextView = (TextView) view.findViewById(R.id.inactive_auction_end_date);
+        startPriceTextView = (TextView) view.findViewById(R.id.inactive_auction_start_price);
+
 
         Format formater = new SimpleDateFormat("dd-MM-yyy");
 
         String date1 = formater.format(auction.getStartDate());
         String date2 = formater.format(auction.getEndDate());
-        priceTextView.setText(String.valueOf(auction.getId()));
-        nameText.setText(date1+"  "+date2);
+
+        startDateTextView.setText(date1);
+        endDateTextView.setText(date2);
+        startPriceTextView.setText(String.valueOf(auction.getStartPrice()));
+
 
 
         return view;

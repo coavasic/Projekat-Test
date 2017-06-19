@@ -147,63 +147,27 @@ public class ItemActivity extends AppCompatActivity {
 
     }
 
+    public void onLogoutClick(MenuItem item) {
+
+        Intent intent = new Intent(ItemActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+
+
+
+    }
+
 
     public void onAllItemsClick(MenuItem item) {
 
         Intent allActivity = new Intent(ItemActivity.this, ItemsActivity.class);
+        allActivity.putExtra("current_user",currentUserId);
         startActivity(allActivity);
         finish();
     }
 
-    public void onAllAutctionsClick(MenuItem item) {
 
 
-//        items1 = Mokap.items;
-//        for (Item i : items1) {
-//            for (Object a : i.getAutions()) {
-//                auctions.add(a);
-//            }
-//        }
-
-//
-//        Intent allAuctions = new Intent(ItemActivity.this, AuctionsActivity.class);
-//        allAuctions.putExtra("auctions", auctions);
-//        startActivity(allAuctions);
-
-
-    }
-
-    public void onInitDatabaseClick(MenuItem item) {
-
-        DatabaseHelper dh = new DatabaseHelper(ItemActivity.this);
-
-        try {
-            ItemDao itemDao = new ItemDao(dh.getConnectionSource());
-            AuctionDao auctionDao = new AuctionDao(dh.getConnectionSource());
-
-            for(Item item1 : Mokap.items){
-                int resoult = itemDao.create(item1);
-
-                if(resoult == 1){
-                    for(Auction auction : item1.getAutions()){
-
-                        Log.i("Auction Error", auction.getEndDate() + "  " + auction.getStartPrice());
-                        auctionDao.create(auction);
-                    }
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-
-        Intent intent = new Intent(ItemActivity.this,ItemsActivity.class);
-        startActivity(intent);
-
-
-    }
 
 
     private User findUserById(long id){

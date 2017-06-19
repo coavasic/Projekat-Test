@@ -54,11 +54,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:textSize="20sp"
+        android:textSize="40sp"
+        android:textColor="@color/colorAccent"
         android:padding="7dp"
         android:layout_margin="30dp"
         android:layout_gravity="center"
         android:id="@+id/login_button"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="init"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
+        android:padding="7dp"
+        android:layout_margin="30dp"
+        android:layout_gravity="center"
+        android:id="@+id/init_database_button"/>
+
+
 
 
 

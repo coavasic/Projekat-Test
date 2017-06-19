@@ -6,14 +6,23 @@
         />
 
 
+
+
+
+
+    <item
+        android:id="@+id/logout_menu_item"
+        android:title="Logout"
+        android:icon="@mipmap/ic_account_circle_black_24dp"
+        android:onClick="onLogoutClick"
+        />
+
     <item android:id="@+id/exit"
         android:title="Exit"
         android:onClick="onExitClick"
         />
 
-    <item android:id="@+id/init_database"
-        android:title="Init database"
-        android:onClick="onInitDatabaseClick"
 
-        />
+
+
 </menu>

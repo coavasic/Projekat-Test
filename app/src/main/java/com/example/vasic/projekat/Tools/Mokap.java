@@ -96,7 +96,7 @@ public class Mokap {
             item.setDescription("Opis " + i);
             item.setName("Ime " + i);
             item.setSold(false);
-            item.setPicture(R.mipmap.ic_launcher_round);
+            item.setPicture(R.drawable.item);
             int x = 5;
             for (int j = 0; j < x; j++) {
                 Auction auction = new Auction();
@@ -137,45 +137,6 @@ public class Mokap {
     }
 
 
-    public static void init(){
-
-
-
-
-
-        for (int i = 0; i < 5; i++) {
-            Item item = new Item();
-            Collection<Auction> auctions = new ArrayList<Auction>();
-            item.setId(i);
-            item.setAutions(auctions);
-            item.setDescription("Opis " + i);
-            item.setName("Ime " + i);
-            item.setSold(false);
-            item.setPicture(R.mipmap.ic_launcher_round);
-            Auction auction = new Auction();
-            auction.setId(i);
-            auction.setStartPrice(i * 100);
-            String dateString = "01-01-2016";
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            try {
-                auction.setStartDate(format.parse(dateString));
-                auction.setEndDate(format.parse(dateString));
-                auction.setItem(item);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-
-
-
-            items.add(item);
-
-
-        }
-
-
-    }
-
 
 
 }
@@ -184,22 +145,6 @@ public class Mokap {
 
 
 
-
-
-//
-//        Item item1 = new Item(1, "Ime", "neki ludi opasdasdasddasadsasdasdasdasdasdasdasdis", R.mipmap.ic_launcher, false);
-//        Item item2 = new Item(1, "Ime", "neki ludi opis", R.mipmap.ic_launcher, false);
-//        Item item3 = new Item(1, "Ime", "neki ludi opis", R.mipmap.ic_launcher, false);
-//        Item item4 = new Item(1, "Ime", "neki ludi opis", R.mipmap.ic_launcher, false);
-//        Item item5 = new Item(1, "Ime", "neki ludi opis", R.mipmap.ic_launcher, false);
-//
-//        mItems.add(item1);
-//        mItems.add(item2);
-//        mItems.add(item3);
-//        mItems.add(item4);
-//        mItems.add(item5);
-//
-//        return mItems;
 
 
 

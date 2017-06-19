@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vasic.projekat.Model.Auction;
@@ -16,6 +17,8 @@ import com.example.vasic.projekat.dao.BidDao;
 import com.example.vasic.projekat.dao.DatabaseHelper;
 import com.example.vasic.projekat.dao.UserDao;
 
+import org.w3c.dom.Text;
+
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -23,6 +26,7 @@ public class NewBidActivity extends AppCompatActivity {
 
     EditText priceEditText;
     Button newBid;
+    TextView currentPriceTextView;
     Bid bid = new Bid();
     DatabaseHelper dh = new DatabaseHelper(NewBidActivity.this);
 
@@ -39,8 +43,9 @@ public class NewBidActivity extends AppCompatActivity {
 
         long auctionId = lastInent.getLongExtra("auction_id",-1);
         long userId = lastInent.getLongExtra("user_id", -1);
-        final double currentPrice = lastInent.getDoubleExtra("current_price",1);
-
+        final double currentPrice = lastInent.getDoubleExtra("current_price",-1);
+        currentPriceTextView = (TextView)findViewById(R.id.new_bid_current_price);
+        currentPriceTextView.setText(String.valueOf(currentPrice));
         final User user = findUserById(userId);
         final Auction auction = findAuctionById(auctionId);
 
@@ -71,7 +76,22 @@ public class NewBidActivity extends AppCompatActivity {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
+                }else{
+
+
+
+
+
+
+                    Toast.makeText(NewBidActivity.this,"Cena mora biti veca od trenutne cene", Toast.LENGTH_LONG).show();
+
+
+
+
+
+
                 }
+
 
             }
         });
