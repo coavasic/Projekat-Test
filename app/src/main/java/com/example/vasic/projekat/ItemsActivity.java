@@ -457,4 +457,12 @@ public class ItemsActivity extends AppCompatActivity {
 
 
     }
+
+    public void onMyAccountClick(MenuItem item) {
+
+        Intent intent = new Intent(this,MyAccountActivity.class);
+        intent.putExtra("current_user",currentUserId);
+        startActivity(intent);
+
+    }
 }

@@ -11,7 +11,12 @@
 
 
 
-
+    <item
+        android:id="@+id/my_account_nav_item"
+        android:title="My account"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:onClick="onMyAccountClick"
+        />
 
 
 

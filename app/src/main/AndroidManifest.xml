@@ -37,8 +37,9 @@
             android:name=".AuctionsActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".AuctionActivity" />
-        <activity android:name=".NewBidActivity"
-            android:label="Nova ponuda"/>
+        <activity
+            android:name=".NewBidActivity"
+            android:label="Nova ponuda" />
 
         <service android:name=".Service.AuctionService" />
 
@@ -48,10 +49,13 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".LoginActivity"
-            android:label="Login"/>
-        <activity android:name=".AllAuctionActivity"
-            android:label="Neaktivne aukcije"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login" />
+        <activity
+            android:name=".AllAuctionActivity"
+            android:label="Neaktivne aukcije" />
+        <activity android:name=".MyAccountActivity" />
     </application>
 
 </manifest>

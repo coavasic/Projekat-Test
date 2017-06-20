@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.vasic.projekat.MyAccountActivity">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+         />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ime"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:padding="3dp"
+        android:id="@+id/my_account_name"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:padding="3dp"
+        android:id="@+id/my_account_email"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ime"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:padding="3dp"
+        android:id="@+id/my_account_address"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ime"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:padding="3dp"
+        android:id="@+id/my_account_phone"/>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Call"
+            android:id="@+id/call_user_button"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <Button
+            android:text="SMS"
+            android:id="@+id/sms_user_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="136dp" />
+
+        <Button
+            android:text="EMAIL"
+            android:id="@+id/email_user_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="256dp" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+
+</LinearLayout>
