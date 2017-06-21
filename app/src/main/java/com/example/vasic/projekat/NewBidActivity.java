@@ -53,6 +53,7 @@ public class NewBidActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(!priceEditText.getText().toString().equals("")){
                 double price = Double.parseDouble(priceEditText.getText().toString());
                 if(price > currentPrice){
                     bid.setAuction(auction);
@@ -89,6 +90,9 @@ public class NewBidActivity extends AppCompatActivity {
 
 
 
+
+                }}else{
+                    Toast.makeText(NewBidActivity.this,"Morate uneti cenu", Toast.LENGTH_LONG).show();
 
                 }
 
